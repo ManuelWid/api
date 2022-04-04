@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button id="btn">Tell me a Joke</button>
+        <p id="content"></p>
+    </div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", joke);
+
+        function joke() {
+            const url = "http://api.serri.codefactory.live/random/";
+            let xml = new XMLHttpRequest();
+            xml.open("GET", url);
+            xml.onload = function() {
+                const result = JSON.parse(xml.responseText);
+                //console.log(result);
+                let content = document.getElementById("content");
+                content.innerHTML = result.joke;
+            }
+            xml.send();
+        }
+    </script>
+</body>
+
+</html>
